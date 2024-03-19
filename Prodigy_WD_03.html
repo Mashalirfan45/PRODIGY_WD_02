@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    body {
+    font-family: Arial, sans-serif;
+    text-align: right;
+    margin-right: 150px ;
+    margin-bottom: 100px ;
+    background-position: right;
+    background-image: url('C:/Users/mashal/Downloads/Premium Photo _ Tic-tac-toe game made of rocks.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 5px;
+            margin-bottom: 10px;
+            justify-content: right; /* Center horizontally */
+            align-content: right; /* Center vertically */
+          
+        }    
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: burlywood;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Tic-Tac-Toe</h1>
+
+<div id="message"></div>
+
+<div class="board" onclick="handleClick(event)">
+    <div class="cell" data-index="0"></div>
+    <div class="cell" data-index="1"></div>
+    <div class="cell" data-index="2"></div>
+    <div class="cell" data-index="3"></div>
+    <div class="cell" data-index="4"></div>
+    <div class="cell" data-index="5"></div>
+    <div class="cell" data-index="6"></div>
+    <div class="cell" data-index="7"></div>
+    <div class="cell" data-index="8"></div>
+</div>
+
+<script>
+    let currentPlayer = 'X';
+    let gameBoard = ['', '', '', '', '', '', '', '', ''];
+    let gameActive = true;
+
+    function handleClick(event) {
+        const cell = event.target;
+        const index = cell.dataset.index;
+
+        if (gameActive && !gameBoard[index]) {
+            gameBoard[index] = currentPlayer;
+            cell.textContent = currentPlayer;
+            checkWin();
+            checkDraw();
+            switchPlayer();
+        }
+    }
+
+    function checkWin() {
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+            [0, 4, 8], [2, 4, 6]             // diagonals
+        ];
+
+        for (const pattern of winPatterns) {
+            const [a, b, c] = pattern;
+            if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+                displayMessage(`${currentPlayer} wins!`);
+                gameActive = false;
+                
+                return;
+            }
+        }
+    }
+
+    function checkDraw() {
+        if (!gameBoard.includes('') && gameActive) {
+            displayMessage('It\'s a draw!');
+            gameActive = false;
+        }
+    }
+
+    function switchPlayer() {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    }
+
+    function displayMessage(message) {
+        const messageElement = document.getElementById('message');
+        messageElement.textContent = message;
+    }
+</script>
+
+</body>
+</html>

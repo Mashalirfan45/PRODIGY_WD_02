@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Collection</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ececfc;
+        }
+        
+        p {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.5s;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            display: inline-block;
+            transition: color 0.3s, background-color 0.3s, transform 0.3s, font-style 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+            background-color: #555;
+            font-family: 'Times New Roman', sans-serif;
+            transform: scale(1.1);
+        }
+
+        nav.scrolled a {
+            font-style: italic;
+        }
+
+        section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #555;
+        }
+
+        .social-media {
+            margin-top: 30px;
+        }
+
+        .social-media ul {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .social-media ul li {
+            margin: 0 10px;
+        }
+
+        .social-media ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-media ul li a:hover {
+            color: #555;
+        }
+
+        .business-hours {
+            margin-top: 30px;
+        }
+
+        .faq {
+            margin-top: 30px;
+        }
+
+        .personal-message {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="home">
+    <h2>Welcome to Our Jewellry Collection</h2>
+    <p>"Welcome to our exquisite world of fine jewelry, where craftsmanship meets elegance in every piece. At our store, we pride ourselves on curating a stunning collection of timeless treasures designed to captivate and inspire. From dazzling diamonds to lustrous pearls and radiant gold, each piece is meticulously crafted to adorn you with sophistication and grace. Whether you're celebrating a special moment or simply indulging in the luxury of self-expression, we invite you to explore our curated selection and discover the perfect adornment to elevate your style."</p>
+    <img src="C:\Users\mashal\Downloads\i1.jpg" alt="Home Image">
+</section>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p>We are a passionate team dedicated to providing excellent services. "At our jewelry brand, we are passionate about crafting exquisite pieces that embody the essence of beauty and sophistication. With years of experience and a commitment to excellence, our artisans bring to life timeless designs that reflect both tradition and innovation. We take pride in our attention to detail, using only the finest materials and employing traditional techniques alongside modern craftsmanship. Our dedication to quality ensures that each piece not only meets but exceeds the highest standards, creating jewelry that is not only stunning but also enduring. With a deep appreciation for the artistry of jewelry-making, we invite you to discover the story behind each creation and experience the luxury of our jewelry brand."</p>
+    <img src="C:\Users\mashal\Downloads\i2.jpg" alt="About Image">
+</section>
+
+<section id="services">
+    <h2>Our Services</h2>
+    <p>Explore our range of services tailored to meet your needs. "At our jewelry store, we offer a range of exceptional services tailored to meet the diverse needs of our clientele. Whether you're searching for the perfect engagement ring, seeking a unique custom design, or looking to restore a cherished family heirloom, our team of skilled artisans is here to bring your vision to life. From expert jewelry repairs and resizing to professional cleaning and appraisal services, we provide comprehensive solutions to ensure that your jewelry remains as stunning as the day you acquired it. With a commitment to exceptional craftsmanship and personalized attention, we strive to exceed your expectations and deliver timeless pieces that you'll treasure for a lifetime. Contact us for more information."</p>
+    <img src="C:\Users\mashal\Downloads\i3.jpg" alt="Services Image">
+</section>
+
+<section id="contact" class="main-content">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p>Phone: (123) 456-7890</p>
+        <p>Email: 123@gmail.com</p>
+        <p>Address: 123 ----, ABC, Pakistan</p>
+    </div>
+    <div class="contact-form">
+        <h3>Contact Form</h3>
+        <form action="submit_form.php" method="post">
+            <input type="text" name="name" placeholder="Your Name" required><br>
+            <input type="email" name="email" placeholder="Your Email" required><br>
+            <input type="text" name="subject" placeholder="Subject" required><br>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea><br>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+    <div class="social-media">
+        <h3>Follow Us</h3>
+        <ul>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>Twitter</li>
+        </ul>
+    </div>
+    <div class="business-hours">
+        <h3>Business Hours</h3>
+        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+        <p>Saturday: 10:00 AM - 4:00 PM</p>
+        <p>Sunday: Closed</p>
+    </div>
+    <div class="map">
+        <h3>Visit Us</h3>
+        <p>Find us on the map:</p>
+        <!-- Replace the iframe src attribute with your Google Maps embed code -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14593.333282758047!2d71.6541096!3d32.7148723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5a31a03091d4b05!2sLayers%20Bakeshop!5e0!3m2!1sen!2suk!4v1645076207363!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+    </div>
+    <div class="faq">
+        <h3>FAQ</h3>
+        <p>Have a question? Check out our <a href="#faq">FAQ</a> section for answers to common inquiries.</p>
+    </div>
+    <p class="personal-message">We're here to help! Feel free to reach out to us with any questions, comments, or feedback you may have. We look forward to hearing from you!</p>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var nav = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

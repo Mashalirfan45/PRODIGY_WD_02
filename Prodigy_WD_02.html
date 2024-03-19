@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-repeat: no-repeat; 
+            background-size: contain;
+            background-size:cover; 
+            background-image: url('C:/Users/mashal/Downloads/i28.jpg');
+        }
+        
+
+        #stopwatch {
+            font-size: 2em;
+            margin-bottom: none;
+        }
+        #stopwatch2 {
+            font-size: medium;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+           
+        }
+
+        .btn {
+            font-size: large;
+            margin: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn i {
+            font-size: 1.5em; /* Adjust the size of the icons */
+        }
+
+        #lap-table {
+            text-align: center;
+            margin: auto;
+        }
+
+        #lap-table th, #lap-table td {
+            padding: 8px;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+
+        /* Customize button styles */
+        .btn-primary {
+            background-color: blue;
+            border-color: #0c0c0c;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
+            filter: brightness(90%);
+        }
+    </style>
+</head>
+<body>
+<img src="C:\Users\mashal\Downloads\st1-removebg-preview.png" height="150px" width="150px">
+<div id="stopwatch">00:00:00</div>
+<div id="stopwatch2">hr&nbsp&nbsp&nbsp&nbsp&nbsp;min&nbsp&nbsp&nbsp&nbsp;sec</div>
+<button onclick="toggleStartPause()" class="btn btn-primary"><i id="startPauseIcon" class="fas fa-play"></i></button>
+<button onclick="resetStopwatch()" class="btn btn-danger"><i class="fas fa-stop"></i></button>
+<button onclick="lap()" class="btn btn-success"><i class="fas fa-flag"></i></button>
+
+<table id="lap-table">
+    <thead>
+        <tr>
+            <th>Laps</th>
+            <th>Time</th>
+            <th>Total Time</th>
+        </tr>
+    </thead>
+    <tbody id="lap-times"></tbody>
+</table>
+
+<script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
+
+<script>
+    let stopwatch;
+    let isRunning = false;
+    let lapCount = 1;
+    let startTime;
+    let elapsedMillisecondsBeforePause = 0;
+
+    function toggleStartPause() {
+        if (isRunning) {
+            pauseStopwatch();
+        } else {
+            startStopwatch();
+        }
+        updateStartPauseButton();
+    }
+
+    function startStopwatch() {
+        startTime = Date.now() - elapsedMillisecondsBeforePause;
+        stopwatch = setInterval(updateStopwatch, 1000);
+        isRunning = true;
+    }
+
+    function pauseStopwatch() {
+        clearInterval(stopwatch);
+        isRunning = false;
+        elapsedMillisecondsBeforePause = Date.now() - startTime;
+    }
+
+    function resetStopwatch() {
+        clearInterval(stopwatch);
+        isRunning = false;
+        lapCount = 1;
+        elapsedMillisecondsBeforePause = 0;
+        document.getElementById('stopwatch').textContent = '00:00:00';
+        document.getElementById('stopwatch2').textContent = 'hr:min:sec';
+        document.getElementById('lap-times').innerHTML = '';
+        updateStartPauseButton();
+    }
+
+    function lap() {
+        if (isRunning) {
+            const lapTimesTable = document.getElementById('lap-times');
+            const currentTime = getCurrentTime();
+            const totalTime = document.getElementById('stopwatch').textContent;
+            
+            const row = lapTimesTable.insertRow();
+            const lapCell = row.insertCell(0);
+            const timeCell = row.insertCell(1);
+            const totalTimeCell = row.insertCell(2);
+
+            lapCell.textContent = `${lapCount}`;
+            timeCell.textContent = currentTime;
+            totalTimeCell.textContent = totalTime;
+
+            lapCount++;
+        }
+    }
+
+    function updateStopwatch() {
+        const stopwatchDiv = document.getElementById('stopwatch');
+        const stopwatch2Div = document.getElementById('stopwatch2');
+        const currentTime = getCurrentTime();
+        stopwatchDiv.textContent = currentTime;
+
+        const runningSeconds = formatTime(hours) + ':' + formatTime(minutes) + ':' + formatTime(seconds);
+        stopwatch2Div.textContent = runningSeconds;
+    }
+
+    function getCurrentTime() {
+        const elapsedMilliseconds = Date.now() - startTime;
+        const hours = Math.floor(elapsedMilliseconds / (1000 * 60 * 60));
+        const minutes = Math.floor((elapsedMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((elapsedMilliseconds % (1000 * 60)) / 1000);
+
+        return `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
+    }
+
+    function formatTime(time) {
+        return time < 10 ? '0' + time : time;
+    }
+
+    function updateStartPauseButton() {
+        const startPauseIcon = document.getElementById('startPauseIcon');
+        startPauseIcon.className = isRunning ? 'fas fa-pause' : 'fas fa-play';
+    }
+</script>
+
+</body>
+</html>
